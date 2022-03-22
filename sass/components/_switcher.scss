@@ -1,0 +1,96 @@
+.switch {
+    position: relative;
+    width: 70px;
+    height: 26px;
+    
+    #switch1,
+    #switch2, 
+    #switch3 {
+      position: absolute;
+      z-index:9;
+      -webkit-appearance: none;
+      
+      & + label {
+        &::after {
+          position: absolute;
+          content: "";
+          width: 23.3px; height: 26px;
+          top: 0; left: 0; z-index: 10;
+        }
+      }
+    }
+    #switch1 {
+      & + label {
+        &::after {
+          left: 6px;
+        }
+      }
+      &:checked {
+        & ~ .switch__inner {
+          background-color: #242D44;
+          transition: background-color 200ms ease-in-out;
+          &::after {
+            left: 6px;
+            background-color: #F96B5B;
+            transition: left 200ms ease-in-out;
+          }
+        }
+      }
+    }
+    #switch2 {
+      & + label {
+        &::after {
+          left: 28px;
+        }
+      }
+      &:checked {
+        & ~ .switch__inner {
+          background-color: #D2CDCD;
+          transition: background-color 200ms ease-in-out;
+          &::after {
+            left: 28px;
+            background-color: #FF8A38;
+            transition: left 200ms ease-in-out;
+          }
+        }
+      }
+    }
+    #switch3 {
+      & + label {
+        &::after {
+          left: 48px;
+        }
+      }
+      &:checked {
+        & ~ .switch__inner {
+          background-color: #1E0936;
+          transition: background-color 200ms ease-in-out;
+          &::after {
+            left: 48px;
+            background-color: #93FFF8;
+            transition: left 200ms ease-in-out;
+          }
+        }
+      }
+    }
+  
+    &__inner {
+      width: 70px;
+      height: 26px;
+      background-color: #fff;
+      border: solid 1px grey;
+      border-radius: 100px;
+      
+      &::after {
+        position: absolute;
+        display: block;
+        content:"";
+        width: 16px; height: 16px;
+        top: 5px; left: 10px;
+        background-color: #eee;
+        border: solid 1px grey;
+        border-radius: 100px;
+        transition: left 200ms ease-in-out;
+      }
+    }
+  }

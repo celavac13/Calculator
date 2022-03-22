@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="css/main.min.css">
+  <link rel="stylesheet" id="stylesheet" href="css/dark-theme.css">
+  <title>Calculator</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="header__tittle">
+        <h1 class="header__tittle__h1">calc</h1>
+      </div>
+      <div class="header__themes">
+        <p class="header__themes__text">THEME</p>
+        <div class="header__themes__num">
+          <p>1</p>
+          <p>2</p>
+          <p>3</p>
+        </div>
+        <div class="switch">
+          <input type="radio" id="switch1" name="switch" checked />
+          <label for="switch1"></label>
+          <input type="radio" id="switch2" name="switch" />
+          <label for="switch2"></label>
+          <input type="radio" id="switch3" name="switch" />
+          <label for="switch3"></label>
+
+          <div class="switch__inner"></div>
+        </div>
+
+      </div>
+    </div>
+    <div class="screen">
+      <input type="text" class="screen__display" id="display" disabled>
+    </div>
+    <div class="numbers">
+      <div class="numbers__row">
+        <button class="numbers__row__btn number">7</button>
+        <button class="numbers__row__btn number">8</button>
+        <button class="numbers__row__btn number">9</button>
+        <button class="numbers__row__btn font-size20 delete color1">DEL</button>
+      </div>
+      <div class="numbers__row">
+        <button class="numbers__row__btn number">4</button>
+        <button class="numbers__row__btn number">5</button>
+        <button class="numbers__row__btn number">6</button>
+        <button class="numbers__row__btn operand">+</button>
+      </div>
+      <div class="numbers__row">
+        <button class="numbers__row__btn number">1</button>
+        <button class="numbers__row__btn number">2</button>
+        <button class="numbers__row__btn number">3</button>
+        <button class="numbers__row__btn operand">-</button>
+      </div>
+      <div class="numbers__row">
+        <button class="numbers__row__btn comma">.</button>
+        <button class="numbers__row__btn number">0</button>
+        <button class="numbers__row__btn operand">/</button>
+        <button class="numbers__row__btn operand">x</button>
+      </div>
+      <div class="numbers__row">
+        <button class="numbers__row__btn font-size20 big-btn reset color1">RESET</button>
+        <button class="numbers__row__btn font-size20 big-btn equal color2">=</button>
+      </div>
+    </div>
+  </div>
+
+  <script defer src="script.js"></script>
+</body>
+
+</html>

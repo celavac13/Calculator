@@ -1,0 +1,162 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+body {
+    font-size: 16px;
+    font-family: 'Spartan', sans-serif;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    margin: 100px 0;
+    width: 540px;
+
+    @media only screen and (max-width: 640px) {
+        width: 327px;
+    }
+
+    & > * {
+        width: 100%;
+    }
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__tittle {
+
+        &__h1 {
+            font-size: 32px;
+        }
+    }
+
+    &__themes {
+        display: flex;
+        position: relative;
+
+        &__text {
+            padding-top: 7px;
+            font-size: 12px;
+            margin-right: 25px;
+        }
+
+        &__num {
+            position: absolute;
+            display: flex;
+            top: -25px;
+            left: 79px;
+            
+            p {
+                display: inline-block;
+                &:not(:last-child){
+                    margin-right: 14px;
+                }
+            }
+        }
+    }
+}
+
+.screen {
+    margin: 32px 0 24px 0;
+
+    &__display {
+        width: 100%;
+        padding: 36px;
+        border: none;
+        border-radius: 10px;
+        font-family: inherit;
+        font-size: 48px;
+        font-weight: 700;
+        text-align: right;
+
+        @media only screen and (max-width: 640px) {
+            font-size: 32px;
+            padding: 25px;
+        }
+    }
+}
+
+.numbers {
+    border: .1px solid transparent; 
+    border-radius: 10px;
+
+    &__row {
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+
+        &:first-child{
+            margin-top: 32px;
+
+            @media only screen and (max-width: 640px) {
+                margin-top: 24px;
+            }
+        }
+
+        &:not(:last-child){
+            margin-bottom: 24px;
+
+            @media only screen and (max-width: 640px) {
+                margin-bottom: 13px;
+            }
+        }
+
+        &:last-child {
+            margin-bottom: 32px;
+
+            @media only screen and (max-width: 640px) {
+                margin-bottom: 24px;
+            }
+        }
+
+
+        &__btn {
+            width: 101px;
+            height: 59px;
+            font-family: inherit;
+            font-size: 32px;
+            font-weight: 700;
+            border-radius: 10px;
+            border: none;
+            transition: all .05s;
+
+            @media only screen and (max-width: 640px) {
+                width: 60px;
+                height: 59px;
+                font-size: 28px;
+            }
+
+            &:active {
+                transform: translateY(5px);
+                box-shadow: none;
+            }
+        }
+       
+        
+        .font-size20 {
+            font-size: 20px;
+
+            @media only screen and (max-width: 640px) {
+                font-size: 16px;
+            }
+        }
+
+        .big-btn {
+            width: 227px;
+
+            @media only screen and (max-width: 640px) {
+                width: 133px;
+            }
+        }
+    }
+}

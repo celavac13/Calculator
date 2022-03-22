@@ -1,0 +1,51 @@
+body {
+    background-color: #E6E6E6;
+}
+
+.header,
+.screen__display {
+    color: #36362C;
+}
+
+.screen__display {
+    background-color: #EEEEEE;
+}
+
+.numbers {
+    background-color: #D2CDCD;
+}
+
+/* del reset */
+.color1 {
+    color: #fff;
+    background-color: #378187;
+    box-shadow: 0 5px #245458;
+}
+
+.color1:hover {
+    background-color: #62B5BC;
+}
+
+/* equal */
+.color2 {
+    color: #fff;
+    background-color: #C85402;
+    box-shadow: 0 5px #913d02;
+}
+
+.color2:hover {
+    background-color: #FF8A38;
+}
+
+.number,
+.operand {
+    color: #36362C;
+    background-color: #E5E4E1;
+    box-shadow: 0 5px #adaca7;
+}
+
+.number:hover,
+.operand:hover {
+    
+    background-color: #fff;
+}
