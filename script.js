@@ -48,7 +48,7 @@ numbers.forEach(el => el.addEventListener("click", () => {
         display.value += el.innerText;
     } else if (display.value === "-" && Object.entries(values).length === 0) {
         display.value += el.innerText;
-    } else if (display.value == 0 || display.value === "NaN" || display.value == result || display.value === "+" || display.value === "/" || display.value === "*") {
+    } else if (display.value == 0 || display.value == result || display.value === "+" || display.value === "/" || display.value === "*") {
         display.value = el.innerText;
     } else if (display.value === "-" && Object.entries(values).length > 0) {
         display.value = el.innerText;
