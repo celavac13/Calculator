@@ -13,7 +13,7 @@ const darkTheme = document.querySelector("#switch1")
 const lightTheme = document.querySelector("#switch2")
 const dimmedTheme = document.querySelector("#switch3")
 
-let values = [];
+let values = {};
 let result = 0;
 
 const checkForComma = function (str) {
@@ -27,11 +27,17 @@ const checkForComma = function (str) {
     else return false;
 };
 
+const getingResult = function (obj) {
+    if (obj.operand === "+") return Number(obj.first) + Number(obj.second);
+    if (obj.operand === "-") return Number(obj.first) - Number(obj.second);
+    if (obj.operand === "*") return Number(obj.first) * Number(obj.second);
+    if (obj.operand === "/") return Number(obj.first) / Number(obj.second);
+}
+
 
 numbers.forEach(el => el.addEventListener("click", () => {
-    if (display.value === 0 || display.value === "0" || display.value === "NaN" || display.value == result) {
+    if (display.value === 0 || display.value === "0" || display.value === "NaN" || display.value == result || display.value === "-" || display.value === "+" || display.value === "/" || display.value === "*") {
         display.value = el.innerText;
-        result = el.innerText;
     } else if (display.value.length <= 12) display.value += el.innerText;
 }));
 
@@ -46,19 +52,19 @@ btnDelete.addEventListener("click", () => {
 operands.forEach(el => el.addEventListener("click", () => {
     if (display.value === "-") display.value = "";
     else if (display.value !== "") {
-        if (values.length === 2) {
-            values.push(display.value.replace(/\,/g, "."));
-            values.push(el.innerText.replace(/\x/g, "*"));
-            display.value = "";
+        if (Object.entries(values).length === 2) {
+            values.second = display.value.replace(/\,/g, ".");
+            values.first = getingResult(values);
+            values.operand = el.innerText.replace(/\x/g, "*");
+            delete values.second;
+            display.value = el.innerText.replace(/\x/g, "*");
 
-            result = eval(values.slice(0, 3).join(" "));
+            result = values.first;
             result = Math.round((result + Number.EPSILON) * 100) / 100;
-            values = [String(result)];
-            values.push(el.innerText.replace(/\x/g, "*"));
         } else {
-            values.push(display.value.replace(/\,/g, "."));
-            values.push(el.innerText.replace(/\x/g, "*"));
-            display.value = "";
+            values.first = display.value.replace(/\,/g, ".");
+            values.operand = el.innerText.replace(/\x/g, "*");
+            display.value = el.innerText.replace(/\x/g, "*");
         }
     }
 }));
@@ -66,45 +72,43 @@ operands.forEach(el => el.addEventListener("click", () => {
 btnMinus.addEventListener("click", () => {
     if (display.value === "" || display.value === "NaN" || display.value === "-") display.value = btnMinus.innerText;
     else {
-        if (values.length === 2) {
-            values.push(display.value.replace(/\,/g, "."));
-            values.push(btnMinus.innerText);
-            display.value = "";
+        if (Object.entries(values).length === 2) {
+            values.second = display.value.replace(/\,/g, ".");
+            values.first = getingResult(values);
+            values.operand = btnMinus.innerText.replace(/\x/g, "*");
+            delete values.second;
+            display.value = btnMinus.innerText;
 
-            result = eval(values.slice(0, 3).join(" "));
+            result = values.first;
             result = Math.round((result + Number.EPSILON) * 100) / 100;
-            values = [String(result)];
-            values.push(btnMinus.innerText);
         } else {
-            values.push(display.value.replace(/\,/g, "."));
-            values.push(btnMinus.innerText);
-            display.value = "";
+            values.first = display.value.replace(/\,/g, ".");
+            values.operand = btnMinus.innerText.replace(/\x/g, "*");
+            display.value = btnMinus.innerText;
         }
     }
 }
 );
 
 btnEqual.addEventListener("click", () => {
-    if (display.value.length === 0) {
-        display.value = String(result).replace(/\./g, ",");
-        values = [];
-    } else if (display.value === "-") {
-        values.push("-0");
-        result = eval(values.slice(0, 3).join(" "))
-        result = Math.round((result + Number.EPSILON) * 100) / 100;
-        display.value = String(result).replace(/\./g, ",");
-        values = [];
-    } else {
-        values.push(display.value.replace(/\,/g, "."));
-        result = eval(values.slice(0, 3).join(" "))
-        result = Math.round((result + Number.EPSILON) * 100) / 100;
-        display.value = String(result).replace(/\./g, ",");
-        values = [];
+    if (Object.entries(values).length === 2) {
+        if (display.value !== "" && display.value !== "-" && display.value !== "+" && display.value !== "/" && display.value !== "*") {
+            values.second = display.value.replace(/\,/g, ".");
+            result = getingResult(values);
+            result = Math.round((result + Number.EPSILON) * 100) / 100;
+            display.value = String(result).replace(/\./g, ",");
+            values = {};
+        } else {
+            result = values.first;
+            result = Math.round((result + Number.EPSILON) * 100) / 100;
+            display.value = String(result).replace(/\./g, ",");
+            values = {};
+        }
     }
 });
 
 btnReset.addEventListener("click", () => {
-    values = [];
+    values = {};
     result = 0;
     display.value = "";
 });
@@ -120,3 +124,4 @@ lightTheme.addEventListener("click", () => {
 dimmedTheme.addEventListener("click", () => {
     document.getElementById("stylesheet").href = "css/dimmed-theme.css";
 });
+
