@@ -129,7 +129,7 @@ btnEqual.addEventListener("click", () => {
             display.value = String(result).replace(/\./g, ",");
             values = {};
         } else {
-            result = values.first;
+            result = Number(values.first);
             result = Math.round((result + Number.EPSILON) * 100) / 100;
             display.value = String(result).replace(/\./g, ",");
             values = {};
