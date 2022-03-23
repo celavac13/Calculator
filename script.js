@@ -86,13 +86,19 @@ btnMinus.addEventListener("click", () => {
 
 btnEqual.addEventListener("click", () => {
     if (display.value.length === 0) {
-        display.value = result;
+        display.value = String(result).replace(/\./g, ",");
+        values = [];
+    } else if (display.value === "-") {
+        values.push("-0");
+        result = eval(values.slice(0, 3).join(" "))
+        result = Math.round((result + Number.EPSILON) * 100) / 100;
+        display.value = String(result).replace(/\./g, ",");
         values = [];
     } else {
         values.push(display.value.replace(/\,/g, "."));
         result = eval(values.slice(0, 3).join(" "))
         result = Math.round((result + Number.EPSILON) * 100) / 100;
-        display.value = result;
+        display.value = String(result).replace(/\./g, ",");
         values = [];
     }
 });
