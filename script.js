@@ -70,11 +70,12 @@ btnDelete.addEventListener("click", () => {
 });
 
 operands.forEach(el => el.addEventListener("click", () => {
-    if (display.value === "-" || display.value === "+" || display.value === "/" || display.value === "*") {
+    if (display.value === "-" && values.operand !== "-") {
+        display.value === "";
+    } else if (display.value === "+" || display.value === "/" || display.value === "*") {
         display.value = el.innerText.replace(/\x/g, "*");
         values.operand = el.innerText.replace(/\x/g, "*");
-    }
-    else if (display.value !== "") {
+    } else if (display.value !== "") {
         if (Object.entries(values).length === 2) {
             values.second = display.value.replace(/\,/g, ".");
             values.first = getingResult(values);
@@ -85,9 +86,12 @@ operands.forEach(el => el.addEventListener("click", () => {
             result = values.first;
             result = Math.round((result + Number.EPSILON) * 100) / 100;
         } else {
-            values.first = display.value.replace(/\,/g, ".");
+            if (display.value.replace(/\,/g, ".") !== "-") {
+                values.first = display.value.replace(/\,/g, ".");
+            }
             values.operand = el.innerText.replace(/\x/g, "*");
             display.value = el.innerText.replace(/\x/g, "*");
+            delete values.second;
         }
     }
 }));
@@ -112,7 +116,7 @@ btnMinus.addEventListener("click", () => {
         }
     } else if (display.value === "+" || display.value === "/" || display.value === "*") {
         display.value = btnMinus.innerText;
-        values.operand = btnMinus.innerText;
+        values.second = btnMinus.innerText;
     } else if (display.value === "-") {
         values.second = "-";
         display.value = btnMinus.innerText;
