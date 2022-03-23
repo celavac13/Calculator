@@ -50,7 +50,7 @@ btnDelete.addEventListener("click", () => {
 });
 
 operands.forEach(el => el.addEventListener("click", () => {
-    if (display.value === "-") display.value = "";
+    if (display.value === "-" || display.value === "+" || display.value === "/" || display.value === "*") display.value = el.innerText;
     else if (display.value !== "") {
         if (Object.entries(values).length === 2) {
             values.second = display.value.replace(/\,/g, ".");
