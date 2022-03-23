@@ -28,25 +28,45 @@ const checkForComma = function (str) {
 };
 
 const getingResult = function (obj) {
-    if (obj.operand === "+") return Number(obj.first) + Number(obj.second);
-    if (obj.operand === "-") return Number(obj.first) - Number(obj.second);
-    if (obj.operand === "*") return Number(obj.first) * Number(obj.second);
-    if (obj.operand === "/") return Number(obj.first) / Number(obj.second);
+    if (obj.operand === "+") {
+        return Number(obj.first) + Number(obj.second);
+    }
+    if (obj.operand === "-") {
+        return Number(obj.first) - Number(obj.second);
+    }
+    if (obj.operand === "*") {
+        return Number(obj.first) * Number(obj.second);
+    }
+    if (obj.operand === "/") {
+        return Number(obj.first) / Number(obj.second);
+    }
 }
 
 
 numbers.forEach(el => el.addEventListener("click", () => {
-    if (display.value === 0 || display.value === "0" || display.value === "NaN" || display.value == result || display.value === "-" || display.value === "+" || display.value === "/" || display.value === "*") {
+    if (display.value === "-" && values.second === "-") {
+        display.value += el.innerText;
+    } else if (display.value === "-" && Object.entries(values).length === 0) {
+        display.value += el.innerText;
+    } else if (display.value == 0 || display.value === "NaN" || display.value == result || display.value === "+" || display.value === "/" || display.value === "*") {
         display.value = el.innerText;
-    } else if (display.value.length <= 12) display.value += el.innerText;
+    } else if (display.value === "-" && Object.entries(values).length > 0) {
+        display.value = el.innerText;
+    } else if (display.value.length <= 12) {
+        display.value += el.innerText;
+    }
 }));
 
 btnComma.addEventListener("click", () => {
-    if (checkForComma(display.value)) display.value += ",";
+    if (checkForComma(display.value)) {
+        display.value += ",";
+    }
 });
 
 btnDelete.addEventListener("click", () => {
-    if (display.value.length !== 0) display.value = display.value.slice(0, -1);
+    if (display.value.length !== 0) {
+        display.value = display.value.slice(0, -1);
+    }
 });
 
 operands.forEach(el => el.addEventListener("click", () => {
@@ -73,10 +93,9 @@ operands.forEach(el => el.addEventListener("click", () => {
 }));
 
 btnMinus.addEventListener("click", () => {
-    if (display.value === "" || display.value === "NaN" || display.value === "-" || display.value === "+" || display.value === "/" || display.value === "*") {
+    if (display.value === "" && Object.entries(values).length === 0) {
         display.value = btnMinus.innerText;
-        values.operand = btnMinus.innerText;
-    } else {
+    } else if (display.value !== "" && display.value !== "-" && display.value !== "+" && display.value !== "*" && display.value !== "/") {
         if (Object.entries(values).length === 2) {
             values.second = display.value.replace(/\,/g, ".");
             values.first = getingResult(values);
@@ -91,12 +110,18 @@ btnMinus.addEventListener("click", () => {
             values.operand = btnMinus.innerText.replace(/\x/g, "*");
             display.value = btnMinus.innerText;
         }
+    } else if (display.value === "+" || display.value === "/" || display.value === "*") {
+        display.value = btnMinus.innerText;
+        values.operand = btnMinus.innerText;
+    } else if (display.value === "-") {
+        values.second = "-";
+        display.value = btnMinus.innerText;
     }
 }
 );
 
 btnEqual.addEventListener("click", () => {
-    if (Object.entries(values).length === 2) {
+    if (Object.entries(values).length >= 2) {
         if (display.value !== "" && display.value !== "-" && display.value !== "+" && display.value !== "/" && display.value !== "*") {
             values.second = display.value.replace(/\,/g, ".");
             result = getingResult(values);
