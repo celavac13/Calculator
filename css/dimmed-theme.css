@@ -39,6 +39,7 @@ body {
 
 .number,
 .operand,
+.operand-minus,
 .comma {
     color: #FFE53D;
     background-color: #331C4D;
@@ -47,6 +48,7 @@ body {
 
 .number:hover,
 .operand:hover,
+.operand-minus:hover,
 .comma:hover {
     
     background-color: #6C34AC;
