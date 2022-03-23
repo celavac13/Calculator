@@ -38,14 +38,16 @@ body {
 }
 
 .number,
-.operand {
+.operand,
+.comma {
     color: #FFE53D;
     background-color: #331C4D;
     box-shadow: 0 5px #663c97;
 }
 
 .number:hover,
-.operand:hover {
+.operand:hover,
+.comma:hover {
     
     background-color: #6C34AC;
 }
