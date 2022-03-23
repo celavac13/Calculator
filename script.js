@@ -29,8 +29,10 @@ const checkForComma = function (str) {
 
 
 numbers.forEach(el => el.addEventListener("click", () => {
-    if (display.value === 0 || display.value === "0" || display.value === "NaN" || display.value == result) display.value = el.innerText;
-    else if (display.value.length <= 12) display.value += el.innerText;
+    if (display.value === 0 || display.value === "0" || display.value === "NaN" || display.value == result) {
+        display.value = el.innerText;
+        result = el.innerText;
+    } else if (display.value.length <= 12) display.value += el.innerText;
 }));
 
 btnComma.addEventListener("click", () => {
@@ -42,7 +44,8 @@ btnDelete.addEventListener("click", () => {
 });
 
 operands.forEach(el => el.addEventListener("click", () => {
-    if (display.value !== "") {
+    if (display.value === "-") display.value = "";
+    else if (display.value !== "") {
         if (values.length === 2) {
             values.push(display.value.replace(/\,/g, "."));
             values.push(el.innerText.replace(/\x/g, "*"));
@@ -61,7 +64,7 @@ operands.forEach(el => el.addEventListener("click", () => {
 }));
 
 btnMinus.addEventListener("click", () => {
-    if (display.value === "" || display.value === "NaN") display.value = btnMinus.innerText;
+    if (display.value === "" || display.value === "NaN" || display.value === "-") display.value = btnMinus.innerText;
     else {
         if (values.length === 2) {
             values.push(display.value.replace(/\,/g, "."));
