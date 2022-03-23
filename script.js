@@ -50,7 +50,10 @@ btnDelete.addEventListener("click", () => {
 });
 
 operands.forEach(el => el.addEventListener("click", () => {
-    if (display.value === "-" || display.value === "+" || display.value === "/" || display.value === "*") display.value = el.innerText;
+    if (display.value === "-" || display.value === "+" || display.value === "/" || display.value === "*") {
+        display.value = el.innerText.replace(/\x/g, "*");
+        values.operand = el.innerText.replace(/\x/g, "*");
+    }
     else if (display.value !== "") {
         if (Object.entries(values).length === 2) {
             values.second = display.value.replace(/\,/g, ".");
@@ -70,8 +73,10 @@ operands.forEach(el => el.addEventListener("click", () => {
 }));
 
 btnMinus.addEventListener("click", () => {
-    if (display.value === "" || display.value === "NaN" || display.value === "-") display.value = btnMinus.innerText;
-    else {
+    if (display.value === "" || display.value === "NaN" || display.value === "-" || display.value === "+" || display.value === "/" || display.value === "*") {
+        display.value = btnMinus.innerText;
+        values.operand = btnMinus.innerText;
+    } else {
         if (Object.entries(values).length === 2) {
             values.second = display.value.replace(/\,/g, ".");
             values.first = getingResult(values);
