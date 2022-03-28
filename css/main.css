@@ -42,9 +42,11 @@ body {
       top: -25px;
       left: 79px; }
       .header__themes__num p {
-        display: inline-block; }
+        cursor: pointer;
+        display: inline-block;
+        user-select: none; }
         .header__themes__num p:not(:last-child) {
-          margin-right: 14px; }
+          padding-right: 14px; }
 
 .screen {
   margin: 32px 0 24px 0; }
@@ -164,8 +166,10 @@ body {
     height: 26px;
     background-color: #fff;
     border: solid 1px grey;
-    border-radius: 100px; }
+    border-radius: 100px;
+    z-index: 20; }
     .switch__inner::after {
+      z-index: 20;
       position: absolute;
       display: block;
       content: "";

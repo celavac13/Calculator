@@ -58,9 +58,11 @@ body {
             left: 79px;
             
             p {
+                cursor: pointer;
                 display: inline-block;
+                user-select: none;
                 &:not(:last-child){
-                    margin-right: 14px;
+                    padding-right: 14px;
                 }
             }
         }

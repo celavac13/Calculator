@@ -9,9 +9,15 @@ const btnMinus = document.querySelector(".operand-minus");
 const btnReset = document.querySelector(".reset");
 const btnEqual = document.querySelector(".equal");
 
-const darkTheme = document.querySelector("#switch1")
-const lightTheme = document.querySelector("#switch2")
-const dimmedTheme = document.querySelector("#switch3")
+const darkTheme = document.querySelector("#switch1");
+const lightTheme = document.querySelector("#switch2");
+const dimmedTheme = document.querySelector("#switch3");
+
+
+const numbersDrag = document.querySelectorAll(".header__themes__num__drag");
+const numHolder = document.querySelector(".header__themes__num");
+let startX;
+let checkForTheme = 1;
 
 let values = {};
 let result = 0;
@@ -41,7 +47,6 @@ const getingResult = function (obj) {
         return Number(obj.first) / Number(obj.second);
     }
 }
-
 
 numbers.forEach(el => el.addEventListener("click", () => {
     if (display.value === "-" && values.second === "-") {
@@ -149,13 +154,39 @@ btnReset.addEventListener("click", () => {
 
 darkTheme.addEventListener("click", () => {
     document.getElementById("stylesheet").href = "css/dark-theme.css";
+    checkForTheme = 1;
 });
 
 lightTheme.addEventListener("click", () => {
     document.getElementById("stylesheet").href = "css/light-theme.css";
+    checkForTheme = 2;
 });
 
 dimmedTheme.addEventListener("click", () => {
     document.getElementById("stylesheet").href = "css/dimmed-theme.css";
+    checkForTheme = 3;
+});
+
+numbersDrag.forEach(el => {
+    el.addEventListener("mousedown", (e) => {
+        startX = e.pageX;
+    })
+});
+
+numHolder.addEventListener("mouseup", (e) => {
+    const diffX = startX - e.pageX;
+    if (checkForTheme === 1 && diffX < 0) {
+        lightTheme.click();
+        lightTheme.checked = true;
+    } else if (checkForTheme === 2 && diffX < 0) {
+        dimmedTheme.click();
+        dimmedTheme.checked = true;
+    } else if (checkForTheme === 2 && diffX > 0) {
+        darkTheme.click();
+        darkTheme.checked = true;
+    } else if (checkForTheme === 3 && diffX > 0) {
+        lightTheme.click();
+        lightTheme.checked = true;
+    }
 });
 
